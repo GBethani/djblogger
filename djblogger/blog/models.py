@@ -9,7 +9,7 @@ class Article(models.Model):
     )
     title = models.CharField(max_length=250)
     subtitle = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=250, unique=True)
+    slug = models.SlugField(max_length=250, unique=True, blank=True)
     content = models.TextField()
     author = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='Articles')
     status = models.CharField(max_length=15,choices=options,default='draft')
@@ -18,6 +18,11 @@ class Article(models.Model):
 
     class Meta:
         ordering = ("-date_created",)
+
+    def save(self,*args,**kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Article,self).save(*args,**kwargs)
 
     def __str__(self):
         return self.title
