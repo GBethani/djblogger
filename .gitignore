@@ -79,6 +79,7 @@ htmlcov/
 .coverage 
 .coverage.* 
 .cache 
+*.md
 .pytest_cache/ 
 nosetests.xml 
 coverage.xml 
