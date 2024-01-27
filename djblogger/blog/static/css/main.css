@@ -1,3 +1,12 @@
-body{
-    background-color: aquamarine;
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Barlow:wght@900&family=Merriweather&display=swap');
+
+.font-families{
+    font-family: 'Archivo', sans-serif;
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Merriweather', serif;
+}
+
+.logo{
+    font-family: 'Archivo', sans-serif;
+    letter-spacing: -1.5px;
 }
