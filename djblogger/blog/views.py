@@ -5,3 +5,4 @@ from . import models
 class HomeView(ListView):
     model = models.Article
     template_name = 'blog/index.html'
+    context_object_name = 'articles'
