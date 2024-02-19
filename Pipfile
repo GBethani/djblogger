@@ -13,6 +13,7 @@ pytest-django = "*"
 pytest-cov = "*"
 factory-boy = "*"
 pytest-factoryboy = "*"
+django-taggit = "*"
 
 [dev-packages]
 
