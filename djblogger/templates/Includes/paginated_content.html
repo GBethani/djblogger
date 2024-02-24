@@ -4,7 +4,9 @@
         <div class="col-12 col-lg-8">
             {% for article in articles %}
             <div class="blog-article d-flex flex-column justify-content-between">
-                <div class="blog-title">{{ article.title }}</div>
+                <div class="blog-title">
+                    <a href="{{article.get_absolute_url}}">{{ article.title }}</a> 
+                </div>
                 <div class="blog-author-date">
                     <div class="blog-author">Author: {{ article.author }}</div>
                     <div class="blog-date">Date Created: {{ article.date_created|date:"F j, Y, g:i a" }}</div>

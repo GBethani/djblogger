@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            {% if article %}
+            <div class="blog-post">
+                <h1 class="blog-title">{{ article.title }}</h1>
+                <div class="blog-author-date">
+                    <span class="blog-author">Author: {{ article.author.username }}</span>
+                    <span class="blog-date">Date Created: {{ article.date_created|date:"F j, Y, g:i a" }}</span>
+                </div>
+                <div class="blog-content">
+                    {{ article.content|safe }}
+                </div>
+            </div>
+            {% else %}
+            <p>Post not found</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <!-- Related posts section -->
+            <div class="related-posts">
+                <h3>Related Posts</h3>
+                <ul>
+                    {% for related_article in related_articles %}
+                    <li><a href="{{related_article.get_absolute_url}}">{{ related_article.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <p><a href="{% url 'home' %}">See More...</a></p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
