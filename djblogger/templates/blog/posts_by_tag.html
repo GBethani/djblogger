@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load blog_tags %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            {% for article in posts_by_tag %}
+            <div class="blog-article d-flex flex-column justify-content-between">
+                <div class="blog-title">
+                    <a href="{{article.get_absolute_url}}">{{ article.title }}</a> 
+                </div>
+                <div class="blog-author-date">
+                    <div class="blog-author">Author: {{ article.author }}</div>
+                    <div class="blog-date">Date Created: {{ article.date_created|date:"F j, Y, g:i a" }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="blog-content">
+                            {{ article.content|safe }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="https://picsum.photos/205/115" alt="Random Image">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div class="d-none d-lg-block col-4">{% tag_cloud %}</div>
+    </div>
+</div>
+{% endblock content %}
